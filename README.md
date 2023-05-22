@@ -1,2 +1,2 @@
 # Investart
-Код для проекта краудфандинговой платформы для IT проектов Investart
+Front side of INVESTART platform
