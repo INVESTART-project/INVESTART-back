@@ -36,7 +36,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+        return http.csrf().disable().cors().and()
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers("/auth/register","/auth").permitAll()
                         .anyRequest().permitAll())
