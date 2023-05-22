@@ -1,2 +1,2 @@
 # Investart
-Front side of INVESTART platform
+Back side of INVESTART platform
