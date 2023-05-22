@@ -13,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import ru.project.Investart.entity.User;
 import ru.project.Investart.repo.UserRepo;
 
+
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -36,10 +38,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable().cors().and()
-                .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers("/auth/register","/auth").permitAll()
-                        .anyRequest().permitAll())
+        return http
+                .csrf().disable().cors().and().authorizeHttpRequests()
+                .requestMatchers("/auth/register","/auth/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .and()
                 .build();
     }
 

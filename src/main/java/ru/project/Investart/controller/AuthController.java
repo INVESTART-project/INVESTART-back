@@ -3,8 +3,9 @@ package ru.project.Investart.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import ru.project.Investart.entity.Car;
+
 import ru.project.Investart.entity.User;
+
 import ru.project.Investart.forms.UserService;
 import ru.project.Investart.repo.UserRepo;
 
@@ -26,17 +27,17 @@ public class AuthController {
         this.userRepo = userRepo;
     }
 
-//    @PostMapping(consumes = "application/json", produces = "application/json")
-//    public User processRegistration(@RequestBody UserService userService) {
-//        return userRepo.save(userService.toUser(passwordEncoder));
-//    }
-
-    @PostMapping(consumes = "application/json", produces = "application/json")
-    public Car createCar(@RequestBody Car car){
-        System.out.println(car);
-        return car;
-
+    @PostMapping(path = "/register",consumes = "application/json", produces = "application/json")
+    public User registration(@RequestBody UserService userService) {
+        return userRepo.save(userService.toUser(passwordEncoder));
     }
+
+    @PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
+    public User signIn(@RequestBody UserService userService) {
+        return userRepo.save(userService.toUser(passwordEncoder));
+    }
+
+
 
     @GetMapping
     public List<User> getAll(){
