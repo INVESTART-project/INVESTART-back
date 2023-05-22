@@ -14,25 +14,18 @@ import ru.project.Investart.entity.User;
 import ru.project.Investart.repo.UserRepo;
 
 
-/*
- * Класс предназначен для работы со Spring Security
- */
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    /*
-     * Бин, возвращающий BCryptPasswordEncoder
-     */
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /*
-     * Бин, предназначенный для фильтрации несуществующих пользователей,
-     * выбрасывает UsernameNotFoundException, если такого User не найдено.
-     */
+
     @Bean
     public UserDetailsService userDetailsService(UserRepo userRepository) {
         return username -> {
@@ -42,13 +35,7 @@ public class WebSecurityConfig {
         };
     }
 
-    /*
-     * Бин, предназначенный для авторизации запросов.
-     * В приложении для незарегистрированных пользователей разрешены только пути:
-     * "/login", "/register", "static/styles/**", последний предназначен для разрешения запросов к css стилям.
-     * Так же после успешной авторизации на странице login происходит редирект на основную страницу пользователя.
-     *
-     */
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
