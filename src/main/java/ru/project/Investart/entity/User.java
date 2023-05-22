@@ -25,15 +25,13 @@ public class User implements UserDetails {
     private String username;
 
     @NonNull
-    private String email;
+    private String password;
 
+    @NonNull
+    private String email;
 
     @NonNull
     private String phoneNumber;
-
-    @NonNull
-    private String password;
-
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -47,7 +45,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -67,7 +65,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 

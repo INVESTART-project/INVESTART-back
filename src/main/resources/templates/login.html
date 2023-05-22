@@ -1,22 +1,39 @@
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>Login Customer</title>
+    <title>investart</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-<div class="container">
-    <form class="form-signin" method="post" action="/auth/login">
-        <h2 class="form-signin-heading">Login</h2>
-        <p>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-        </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+<div>
+    <div>
+        <h1>Войти</h1>
+    </div>
+
+    <div>
+        <div>
+            <p>Нету аккаунта? Нажмите <a href="/register" th:href="@{/register}">здесь</a>, чтобы зарегистрироваться.
+            </p>
+        </div>
+
+        <form method="POST" th:action="@{/login}">
+            <div>
+                <label for="username">Логин:</label><br>
+                <input type="text" name="username" class="data"/><br/>
+            </div>
+            <div>
+                <label for="password">Пароль: </label><br>
+                <input type="password" name="password" class="data"/><br/>
+            </div>
+            <div>
+                <input type="submit" value="Войти" class="button"/>
+            </div>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        </form>
+
+    </div>
 </div>
 </body>
 </html>

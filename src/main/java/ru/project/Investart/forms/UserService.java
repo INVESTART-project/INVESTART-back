@@ -15,26 +15,22 @@ import ru.project.Investart.entity.User;
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegistrationForm {
+public class UserService {
 
     @NonNull
     private String username;
-
     @NonNull
     private String password;
     @NonNull
     private String email;
-
-
     @NonNull
     private String phoneNumber;
-
 
     @NonNull
     private Role role;
 
 
     public User toUser(PasswordEncoder passwordEncoder) {
-        return new User(username,email,phoneNumber,passwordEncoder.encode(password),role);
+        return new User(username,passwordEncoder.encode(password),email,phoneNumber,role);
     }
 }

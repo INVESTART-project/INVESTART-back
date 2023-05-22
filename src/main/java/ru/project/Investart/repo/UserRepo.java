@@ -6,7 +6,8 @@ import ru.project.Investart.entity.User;
 import java.util.List;
 
 public interface UserRepo extends CrudRepository<User,Long> {
-    public User findUserByUsername(String username);
-    public List<User> findAll();
+     User findUserByUsername(String username);
+     List<User> findAll();
 
+    boolean existsUserByUsername(String username);
 }

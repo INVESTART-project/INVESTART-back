@@ -13,8 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import ru.project.Investart.entity.User;
 import ru.project.Investart.repo.UserRepo;
 
-
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -38,16 +36,10 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests()
-                .requestMatchers("/", "/**", "/login", "/register", "static/styles/**")
-                .permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/users/main")
-//                .and()
-//                .logout().logoutSuccessUrl("/login")
-                .and()
+        return http
+                .authorizeHttpRequests(customizer -> customizer
+                        .requestMatchers("/auth/register","/auth").permitAll()
+                        .anyRequest().permitAll())
                 .build();
     }
 

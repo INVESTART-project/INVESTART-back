@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>КУРСОВОЙ ПРОЕКТ</title>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+<div>
+  <div>
+    <h1>
+      Регистрация
+    </h1>
+  </div>
+  <div>
+    <form method="POST" th:action="@{/register}" th:object="${registerForm}">
+      <div>
+        <label for="username">Никнейм: </label>
+        <input type="text" th:field="*{username}" id="username"/>
+      </div>
+      <div class="info">
+        <label for="password">Пароль: </label>
+        <input type="password" th:field="*{password}" id="password"/>
+      </div>
+      <div>
+        <label for="phoneNumber">Номер телефона: </label>
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
+      </div>
+
+      <div>
+        <label for="email">email: </label>
+        <input type="text" th:field="*{email}" id="email"/>
+      </div>
+
+      <input type="submit" value="Зарегистрироваться" class="register_button"/>
+
+      <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+    </form>
+  </div>
+
+</div>
+</body>
+</html>
