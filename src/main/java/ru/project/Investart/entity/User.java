@@ -37,6 +37,7 @@ public class User implements UserDetails {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
+    @NonNull
     private Role role;
 
     @Override
