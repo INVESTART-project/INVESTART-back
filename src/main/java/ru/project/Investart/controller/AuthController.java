@@ -51,6 +51,7 @@ public class AuthController {
     @PostMapping(path = "/login")
     public User signIn(@RequestBody UserLogin userLogin) {
         User tryUser = userRepo.findUserByUsername(userLogin.getUsername());
+        if(tryUser == null) return null;
         if(!userLogin.getPassword().equals(tryUser.getPassword())) return null;
         return tryUser;
     }

@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/invest")
+@CrossOrigin
 public class InvestorController {
 
     final InvestorRepo investorRepo;
