@@ -11,9 +11,7 @@ import ru.project.Investart.repo.OperationHistoryRepo;
 import ru.project.Investart.repo.StartupRepo;
 import ru.project.Investart.repo.UserRepo;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/invest")
@@ -49,10 +47,13 @@ public class InvestorController {
     }
 
     @GetMapping("/startups/{id}")
-    public List<Startup> getStartups(@PathVariable Long id){
+    public Set<Startup> getStartups(@PathVariable Long id){
         Investor investor = investorRepo.findInvestorByUser(userRepo.findUserById(id));
         List<OperationHistory> operationHistoryList = operationHistoryRepo.findOperationHistoriesByInvestor(investor);
-        List<Startup> startupList = operationHistoryList.stream().map(item -> item.getStartup()).toList();
-        return startupList;
+        Set<Startup> startupSet = new HashSet<>();
+        for (OperationHistory item: operationHistoryList) {
+            startupSet.add(item.getStartup());
+        }
+        return startupSet;
     }
 }
