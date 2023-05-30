@@ -36,6 +36,6 @@ public class UserService {
 
 
     public User toUser() {
-        return new User(username,email,phoneNumber,password,role);
+        return new User(username,password,email,phoneNumber,role);
     }
 }
