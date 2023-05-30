@@ -28,17 +28,15 @@ public class StartupController {
 
 
     @PostMapping("/newProject")
-    public List<Startup> newProject(@RequestBody StartupReq startupReq){
+    public Startup newProject(@RequestBody StartupReq startupReq){
         Startup newStartup = new Startup();
         newStartup.setName(startupReq.getName());
         newStartup.setDescription(startupReq.getDescription());
-        newStartup.setCurrentMoney(startupReq.getCurrentMoney());
+        newStartup.setCurrentMoney(0);
         newStartup.setEndDate(startupReq.getEndDate());
         newStartup.setNeedMoney(startupReq.getNeedMoney());
         newStartup.setAuthor(devTeamRepo.findDevTeamById(startupReq.getAuthor_id()));
-        startupRepo.save(newStartup);
-
-        return startupRepo.findAll();
+        return startupRepo.save(newStartup);
     }
 
     @GetMapping("/{id}")

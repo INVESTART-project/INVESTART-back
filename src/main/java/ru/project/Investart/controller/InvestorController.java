@@ -16,6 +16,7 @@ import java.util.GregorianCalendar;
 
 @RestController
 @RequestMapping("/invest")
+@CrossOrigin
 public class InvestorController {
 
     final InvestorRepo investorRepo;
