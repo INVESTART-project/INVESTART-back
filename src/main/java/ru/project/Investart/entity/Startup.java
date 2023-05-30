@@ -26,6 +26,9 @@ public class Startup {
     private String description;
 
     @NonNull
+    private double currentMoney;
+
+    @NonNull
     private double needMoney;
 
     @NonNull

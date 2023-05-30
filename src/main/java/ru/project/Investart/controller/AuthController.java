@@ -50,7 +50,9 @@ public class AuthController {
 
     @PostMapping(path = "/login")
     public User signIn(@RequestBody UserLogin userLogin) {
-        return userRepo.findUserByUsername(userLogin.getUsername());
+        User tryUser = userRepo.findUserByUsername(userLogin.getUsername());
+        if(!userLogin.getPassword().equals(tryUser.getPassword())) return null;
+        return tryUser;
     }
 
     @GetMapping("/user/{id}")
@@ -64,12 +66,10 @@ public class AuthController {
 
     }
 
-
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userRepo.findAll();
     }
-
 
     @GetMapping("/investors")
     public List<User> getInvestors(){
@@ -81,18 +81,4 @@ public class AuthController {
         return devTeamRepo.findAll().stream().filter(d -> d.getUser().getId()==id).collect(Collectors.toList());
     }
 
-//    @PostMapping("/login")
-//    public List<User> processLogin(@RequestBody UserWrapper userWrapper) {
-//
-//        if (!userRepo.existsUserByUsername(userWrapper.getUsername())) {
-//            try {
-//                userRepo.save(registrationForm.toUser(passwordEncoder));
-//            } catch (Exception e) {
-//                log.info("cannot save");
-//            }
-//
-//            log.info("Registered new user" + registrationForm.toUser(passwordEncoder).toString());
-//        }
-//        return userRepo.findAll();
-//    }
 }

@@ -32,6 +32,7 @@ public class StartupController {
         Startup newStartup = new Startup();
         newStartup.setName(startupReq.getName());
         newStartup.setDescription(startupReq.getDescription());
+        newStartup.setCurrentMoney(startupReq.getCurrentMoney());
         newStartup.setEndDate(startupReq.getEndDate());
         newStartup.setNeedMoney(startupReq.getNeedMoney());
         newStartup.setAuthor(devTeamRepo.findDevTeamById(startupReq.getAuthor_id()));

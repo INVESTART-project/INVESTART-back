@@ -28,6 +28,9 @@ public class StartupReq {
     private double needMoney;
 
     @NonNull
+    private double currentMoney;
+
+    @NonNull
     private Date endDate;
 
     @NonNull
