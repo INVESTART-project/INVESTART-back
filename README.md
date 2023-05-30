@@ -1,2 +1,2 @@
 # Investart
-Back side of INVESTART platform
+Back side of Investart project
