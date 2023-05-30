@@ -22,6 +22,9 @@ public class StartupReq {
     private String name;
 
     @NonNull
+    private String description;
+
+    @NonNull
     private double needMoney;
 
     @NonNull

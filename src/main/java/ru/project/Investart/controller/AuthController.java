@@ -13,9 +13,13 @@ import ru.project.Investart.repo.DevTeamRepo;
 import ru.project.Investart.repo.InvestorRepo;
 import ru.project.Investart.repo.UserRepo;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/auth")
 @Slf4j
+@CrossOrigin
 public class AuthController {
 
 
@@ -49,7 +53,33 @@ public class AuthController {
         return userRepo.findUserByUsername(userLogin.getUsername());
     }
 
+    @GetMapping("/user/{id}")
+    public User getUserByID(@PathVariable Long id){
+        var user = userRepo.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            return null;
+        }
 
+    }
+
+
+    @GetMapping("/users")
+    public List<User> getAllUsers(){
+        return userRepo.findAll();
+    }
+
+
+    @GetMapping("/investors")
+    public List<User> getInvestors(){
+        return userRepo.findAll().stream().filter(u -> u.getRole().getId()==1).collect(Collectors.toList());
+    }
+
+    @GetMapping("/devByUID/{id}")
+    public List<DevTeam> getDevByUID(@PathVariable Long id){
+        return devTeamRepo.findAll().stream().filter(d -> d.getUser().getId()==id).collect(Collectors.toList());
+    }
 
 //    @PostMapping("/login")
 //    public List<User> processLogin(@RequestBody UserWrapper userWrapper) {
