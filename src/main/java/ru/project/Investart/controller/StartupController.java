@@ -47,7 +47,7 @@ public class StartupController {
 
     @GetMapping("/find/{name}")
     public List<Startup> findStartup(@PathVariable String name){
-        return startupRepo.findAll().stream().filter(s -> s.getName().contains(name)).collect(Collectors.toList());
+        return startupRepo.findAll().stream().filter(s -> s.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
     @GetMapping("/all")
